@@ -14,6 +14,13 @@ public class Status {
 	@JsonInclude(Include.NON_NULL)
 	private String error;
 
+	public Status() {}
+	
+	public Status(String error) {
+		this.status = STATUS.fail;
+		this.error = error;
+	}
+
 	public STATUS getStatus() {
 		return status;
 	}
