@@ -17,18 +17,20 @@ public class Worker implements Runnable {
 
 	@Override
 	public void run() {
-		try {
-			Checkin checkin = queue.poll(20, TimeUnit.SECONDS);
-
-			if(checkin != null) {
-				
-				log.info(checkin.toString());
-			}
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
+		while(true) {
+			try {
+				Checkin checkin = queue.poll(20, TimeUnit.SECONDS);
+
+				if(checkin != null) {
+
+					log.info(checkin.toString());
+				}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public void add(Checkin checkin) {
