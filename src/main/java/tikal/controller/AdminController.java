@@ -12,6 +12,9 @@ import tikal.model.AdminStats;
 @RestController
 public class AdminController {
 	
+	/**
+	 * @return
+	 */
 	@RequestMapping(value="/admin/stats",method=RequestMethod.GET)
 	public ResponseEntity<AdminStats>  getStats() {
 		
