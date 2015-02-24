@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import tikal.model.Checkin;
 import tikal.model.Status;
 import tikal.service.CheckinQueue;
+import tikal.service.Dao;
 
 
 @RestController
@@ -21,6 +22,9 @@ public class CheckinController {
 	
 	@Autowired
 	private CheckinQueue checkinQueue;
+
+    @Autowired
+    private Dao checkinDao;
 	
 	@RequestMapping(value="/checkin",method=RequestMethod.POST)
 	public ResponseEntity<Status> checkin(@RequestBody final Checkin checkin) {
@@ -37,6 +41,9 @@ public class CheckinController {
 	@RequestMapping(value="/api/location",method=RequestMethod.GET)
 	public ResponseEntity<List<Checkin>> locations() {
 
+        List <Checkin> checkins = checkinDao.getLastUpdates(10);
+
+/*
 		Checkin c1 = new Checkin();
 		c1.setLatitude(32.32);
 		c1.setLongitude(33.75);
@@ -50,9 +57,10 @@ public class CheckinController {
 		List<Checkin> l = new ArrayList<Checkin>();
 		l.add(c1);
 		l.add(c2);
+*/
+
 		
-		
-		return new ResponseEntity<List<Checkin>>(l, HttpStatus.OK);
+		return new ResponseEntity<List<Checkin>>(checkins, HttpStatus.OK);
 	}
 
 	private boolean isValid(Checkin checkin) {

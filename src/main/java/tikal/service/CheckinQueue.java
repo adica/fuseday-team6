@@ -8,12 +8,15 @@ import java.util.concurrent.TimeUnit;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tikal.model.Checkin;
 
 @Service
 public class CheckinQueue {
+    @Autowired
+    private Dao checkinDao;
 
 	private static final int WORKERS_SIZE = 5;
 	private final BlockingDeque<Checkin> queue = new LinkedBlockingDeque<Checkin>();
@@ -26,6 +29,7 @@ public class CheckinQueue {
 			Worker worker = new Worker();
 			new Thread(worker).start();
 			workers.add(worker);
+            worker.setCheckinDao(checkinDao);
 		}
 		
 		new Thread(new Poller()).start();
