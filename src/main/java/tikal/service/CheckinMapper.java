@@ -31,8 +31,8 @@ public class CheckinMapper {
     public Checkin toCheckin(DBObject doc){
         Checkin checkin = new Checkin();
         checkin.setUserId((String) doc.get(USER_ID));
-        checkin.setLatitude(((Number) doc.get(LAT)).longValue());
-        checkin.setLongitude(((Number) doc.get(LON)).longValue());
+        checkin.setLatitude(((Number) doc.get(LAT)).floatValue());
+        checkin.setLongitude(((Number) doc.get(LON)).floatValue());
         checkin.setTimestamp(((Number) doc.get(TIMESTAMP)).longValue());
         return checkin;
     }
