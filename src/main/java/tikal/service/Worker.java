@@ -10,7 +10,8 @@ import org.slf4j.LoggerFactory;
 import tikal.model.Checkin;
 
 public class Worker implements Runnable {
-	
+
+    private Dao checkinDao;
 	private final static Logger log = LoggerFactory.getLogger(Worker.class);
 	
 	private BlockingDeque<Checkin> queue = new LinkedBlockingDeque<Checkin>();
@@ -23,8 +24,8 @@ public class Worker implements Runnable {
 				Checkin checkin = queue.poll(20, TimeUnit.SECONDS);
 
 				if(checkin != null) {
-
-					log.info(checkin.toString());
+                    checkinDao.persist(checkin);
+                    log.info(checkin.toString());
 				}
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -37,4 +38,7 @@ public class Worker implements Runnable {
 		queue.add(checkin);
 	}
 
+    public void setCheckinDao(Dao checkinDao) {
+        this.checkinDao = checkinDao;
+    }
 }
