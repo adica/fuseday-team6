@@ -5,7 +5,7 @@
 		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder 
 			by default -->
 		<encoder>
-			<pattern>Hanan %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} -
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} -
 				%msg%n
 			</pattern>
 		</encoder>
@@ -13,7 +13,7 @@
 
 	<appender name="FILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>/home/hanang/fuseday.log</file>
+		<file>/tmp/fuseday.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!-- daily rollover -->
 			<fileNamePattern>logFile.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
@@ -35,8 +35,8 @@
 		<appender-ref ref="FILE" />
 	</appender>
 
-	<logger name="com.tikal.Worker" level="ERROR" additivity="false">
-		<appender-ref ref="STDERR" />
+	<logger name="tikal.service.Worker" level="info" additivity="false">
+		<appender-ref ref="ASYNCFILE" />
 	</logger>
 
 	<root level="info">
