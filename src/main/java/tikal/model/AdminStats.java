@@ -2,15 +2,15 @@ package tikal.model;
 
 public class AdminStats {
 
-	private int cpuUsage;
+	private double cpuUsage;
 	private int memoryUsage;
 	private int queueSize;
 
-	public void setCpuUsage(int cpuUsage) {
+	public void setCpuUsage(double cpuUsage) {
 		this.cpuUsage = cpuUsage;
 	}
 	
-	public int getCpuUsage() {
+	public double getCpuUsage() {
 		return cpuUsage;
 	}
 

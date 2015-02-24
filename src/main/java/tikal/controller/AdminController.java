@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tikal.model.AdminStats;
 import tikal.service.CheckinQueue;
+import tikal.service.PerformanceService;
 
 
 @RestController
@@ -16,13 +17,16 @@ public class AdminController {
 	
 	@Autowired
 	private CheckinQueue checkinQueue;
+	
+	@Autowired
+	private PerformanceService performanceService;
 
 	@RequestMapping(value="/admin/stats",method=RequestMethod.GET)
 	public ResponseEntity<AdminStats>  getStats() {
 
 		AdminStats stat = new AdminStats();
-		stat.setCpuUsage(5);
-		stat.setMemoryUsage(5);
+		stat.setCpuUsage(performanceService.getCpu());
+		stat.setMemoryUsage((int) performanceService.getMemory());
 		stat.setQueueSize(checkinQueue.pendingChecking());
 
 		return new ResponseEntity<AdminStats>(stat, HttpStatus.OK);
