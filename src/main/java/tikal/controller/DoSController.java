@@ -33,7 +33,6 @@ public class DoSController {
 				execService.execute(attack);
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
