@@ -2,13 +2,17 @@ package tikal.service;
 
 import com.google.gson.Gson;
 import com.mongodb.*;
+
 import org.springframework.stereotype.Service;
+
 import tikal.model.Checkin;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import javax.annotation.PostConstruct;
 
 //import redis.clients.jedis.Jedis;
 
@@ -33,6 +37,7 @@ public class Dao {
 
     }
 
+    @PostConstruct
     public void init() throws UnknownHostException {
         mongo = new Mongo("127.0.0.1", 27017);
 //        mongo = new Mongo("localhost", 27017);
