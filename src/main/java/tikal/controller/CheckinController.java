@@ -38,13 +38,13 @@ public class CheckinController {
 	public ResponseEntity<List<Checkin>> locations() {
 
 		Checkin c1 = new Checkin();
-		c1.setLatitude(12345.23);
-		c1.setLongitude(67890.23);
+		c1.setLatitude(32.32);
+		c1.setLongitude(33.75);
 		c1.setUserId("hanang");
 		
 		Checkin c2 = new Checkin();
-		c2.setLatitude(54321.32);
-		c2.setLongitude(09876.32);
+		c2.setLatitude(32.5);
+		c2.setLongitude(33.21);
 		c2.setUserId("oren");
 		
 		List<Checkin> l = new ArrayList<Checkin>();

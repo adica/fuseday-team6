@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.TimeUnit;
 
 import javax.annotation.PostConstruct;
 
@@ -34,6 +35,10 @@ public class CheckinQueue {
 		queue.add(checkin);
 	}
 
+	public int pendingChecking() {
+		return queue.size();
+	}
+
 	/**
 	 * Hand to thread in Round Robin manner.
 	 * @author hanang
@@ -46,16 +51,22 @@ public class CheckinQueue {
 		@Override
 		public void run() {
 			while (true) {
-				Checkin checkin = queue.poll();
-				
-				if(checkin != null) {
-					workers.get(index++).add(checkin);
-					
-					if(index == workers.size()) {
-						index = 0;
+				try {
+					Checkin checkin = queue.poll(20, TimeUnit.SECONDS);
+					if(checkin != null) {
+						workers.get(index++).add(checkin);
+						
+						if(index == workers.size()) {
+							index = 0;
+						}
 					}
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
+				
 			}
 		}
 	}
+
 }
