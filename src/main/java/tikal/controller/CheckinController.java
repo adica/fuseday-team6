@@ -1,5 +1,6 @@
 package tikal.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,22 @@ public class CheckinController {
 	@RequestMapping(value="/api/location",method=RequestMethod.GET)
 	public ResponseEntity<List<Checkin>> locations() {
 
+		Checkin c1 = new Checkin();
+		c1.setLatitude(12345.23);
+		c1.setLongitude(67890.23);
+		c1.setUserId("hanang");
 		
-		return null;
+		Checkin c2 = new Checkin();
+		c2.setLatitude(54321.32);
+		c2.setLongitude(09876.32);
+		c2.setUserId("oren");
+		
+		List<Checkin> l = new ArrayList<Checkin>();
+		l.add(c1);
+		l.add(c2);
+		
+		
+		return new ResponseEntity<List<Checkin>>(l, HttpStatus.OK);
 	}
 
 	private boolean isValid(Checkin checkin) {
