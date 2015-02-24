@@ -11,7 +11,7 @@ public class PerformanceService {
 	public double getCpu() {
 		OperatingSystemMXBean operatingSystemMXBean = ManagementFactory.getOperatingSystemMXBean();
 
-		return operatingSystemMXBean.getSystemLoadAverage() * 10;
+		return operatingSystemMXBean.getSystemLoadAverage();
 	}
 
 	public int getMemory() {
