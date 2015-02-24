@@ -4,6 +4,7 @@ public class AdminStats {
 
 	private int cpuUsage;
 	private int memoryUsage;
+	private int queueSize;
 
 	public void setCpuUsage(int cpuUsage) {
 		this.cpuUsage = cpuUsage;
@@ -19,5 +20,13 @@ public class AdminStats {
 	
 	public int getMemoryUsage() {
 		return memoryUsage;
+	}
+	
+	public void setQueueSize(int queueSize) {
+		this.queueSize = queueSize;
+	}
+	
+	public int getQueueSize() {
+		return queueSize;
 	}
 }

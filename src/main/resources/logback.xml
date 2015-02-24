@@ -1,0 +1,47 @@
+<configuration>
+
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder 
+			by default -->
+		<encoder>
+			<pattern>Hanan %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} -
+				%msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/home/hanang/fuseday.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>logFile.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+			<!-- keep 30 days' worth of history -->
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="ASYNCSTDOUT" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="STDOUT" />
+	</appender>
+
+	<appender name="ASYNCFILE" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="FILE" />
+	</appender>
+
+	<logger name="com.tikal.Worker" level="ERROR" additivity="false">
+		<appender-ref ref="STDERR" />
+	</logger>
+
+	<root level="info">
+		<!-- appender-ref ref="GRAYLOG2" / -->
+		<appender-ref ref="ASYNCSTDOUT" />
+		<!-- <appender-ref ref="ASYNCFILE" /> -->
+	</root>
+</configuration>
