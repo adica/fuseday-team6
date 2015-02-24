@@ -18,7 +18,7 @@ public class CheckinQueue {
     @Autowired
     private Dao checkinDao;
 
-	private static final int WORKERS_SIZE = 5;
+	private static final int WORKERS_SIZE = 20;
 	private final BlockingDeque<Checkin> queue = new LinkedBlockingDeque<Checkin>();
 	private final List<Worker> workers = new ArrayList<Worker>();
 	
