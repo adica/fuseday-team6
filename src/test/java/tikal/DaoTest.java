@@ -1,15 +1,17 @@
 package tikal;
 
-import com.mongodb.util.TestCase;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import tikal.model.Checkin;
-import tikal.service.Dao;
-
 import java.net.UnknownHostException;
 import java.util.Collection;
 import java.util.Date;
+
+import junit.framework.TestCase;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import tikal.model.Checkin;
+import tikal.service.Dao;
 
 /**
  * Created by zeev on 2/24/15.
