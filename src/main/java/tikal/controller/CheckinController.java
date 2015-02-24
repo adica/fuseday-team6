@@ -1,5 +1,7 @@
 package tikal.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +31,13 @@ public class CheckinController {
 		}else {
 			return new ResponseEntity<Status>(new Status("Invalid location data!"), HttpStatus.OK);			
 		}
+	}
+	
+	@RequestMapping(value="/api/location",method=RequestMethod.GET)
+	public ResponseEntity<List<Checkin>> locations() {
+
+		
+		return null;
 	}
 
 	private boolean isValid(Checkin checkin) {
